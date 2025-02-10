@@ -1,10 +1,11 @@
 import crypto from 'crypto';
+import { Buffer } from 'buffer';
 
 class SuperAdminAuthService {
   constructor() {
     this.algorithm = 'aes-256-cbc';
-    this.secretKey = process.env.REACT_APP_SUPER_ADMIN_SECRET_KEY;
-    this.iv = Buffer.from(process.env.REACT_APP_SUPER_ADMIN_IV, 'hex');
+    this.secretKey = import.meta.env.VITE_SUPER_ADMIN_SECRET_KEY;
+    this.iv = Buffer.from(import.meta.env.VITE_SUPER_ADMIN_IV, 'hex');
     this.sessionTimeout = 30 * 60 * 1000; // 30 minutes
     this.maxLoginAttempts = 5;
     this.lockoutDuration = 15 * 60 * 1000; // 15 minutes
@@ -32,10 +33,10 @@ class SuperAdminAuthService {
         throw new Error('Account is temporarily locked. Please try again later.');
       }
 
-      const encryptedStoredPassword = process.env.REACT_APP_SUPER_ADMIN_PASSWORD;
+      const encryptedStoredPassword = import.meta.env.VITE_SUPER_ADMIN_PASSWORD;
       const decryptedStoredPassword = this.decrypt(encryptedStoredPassword);
       
-      const isValid = username === process.env.REACT_APP_SUPER_ADMIN_USERNAME && 
+      const isValid = username === import.meta.env.VITE_SUPER_ADMIN_USERNAME && 
                      password === decryptedStoredPassword;
 
       if (!isValid) {

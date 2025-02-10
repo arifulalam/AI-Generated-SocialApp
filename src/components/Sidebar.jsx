@@ -26,24 +26,27 @@ const Sidebar = () => {
         darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
       } shadow-lg transition-all duration-200`}
     >
-      <div className="p-4">
+      <div className="p-4 pt-[80px]">
         <div className="space-y-4">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
-                  isActive
-                    ? 'bg-blue-500 text-white'
-                    : 'hover:bg-gray-200 dark:hover:bg-gray-700'
-                }`
-              }
-            >
-              <item.icon className="h-6 w-6" />
-              <span>{item.label}</span>
-            </NavLink>
-          ))}
+          {navItems.map((item) => {
+            //console.log(item);
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
+                    isActive
+                      ? 'bg-blue-500 text-white'
+                      : 'hover:bg-gray-200 dark:hover:bg-gray-700'
+                  }`
+                }
+              >
+                <item.icon className="h-6 w-6" />
+                <span>{item.label}</span>
+              </NavLink>
+            )
+          })}
         </div>
       </div>
     </aside>

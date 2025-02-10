@@ -13,6 +13,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './contexts/AuthContext';
+import SuperAdminLogin from './components/admin/SuperAdminLogin';
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -38,6 +39,11 @@ const AppContent = () => {
             <Route path="/" element={
               <PublicRoute>
                 <Landing />
+              </PublicRoute>
+            } />
+            <Route path="/admin/login" element={
+              <PublicRoute>
+                <SuperAdminLogin/>
               </PublicRoute>
             } />
             <Route path="/login" element={
